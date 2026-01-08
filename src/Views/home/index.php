@@ -18,10 +18,10 @@
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="/auth/login" class="nav-link">Login</a>
+                    <a href="<?=BASE_URL?>auth/login" class="nav-link">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/auth/register" class="btn btn-outline-light ms-2">Registro</a>
+                    <a href="<?=BASE_URL?>auth/register" class="btn btn-outline-light ms-2">Registro</a>
                 </li>
             </ul>
         </div>
@@ -38,10 +38,10 @@
         </p>
 
         <div class="d-flex justify-content-center gap-3 mt-4">
-            <a href="/auth/login" class="btn btn-primary btn-lg">
+            <a href="<?=BASE_URL?>auth/login" class="btn btn-primary btn-lg">
                 Iniciar sesión
             </a>
-            <a href="/auth/register" class="btn btn-outline-primary btn-lg">
+            <a href="<?=BASE_URL?>auth/register" class="btn btn-outline-primary btn-lg">
                 Crear cuenta
             </a>
         </div>
@@ -95,7 +95,7 @@
         <p class="mt-3">
             Regístrate gratis y comienza a trabajar con ProjectGest.
         </p>
-        <a href="/auth/register" class="btn btn-primary btn-lg mt-3">
+        <a href="<?=BASE_URL?>auth/register" class="btn btn-primary btn-lg mt-3">
             Crear cuenta
         </a>
     </div>
