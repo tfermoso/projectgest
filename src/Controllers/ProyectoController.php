@@ -110,6 +110,7 @@ class ProyectoController extends Controller
         if ($tarea && $tarea->proyecto->usuario_id === $_SESSION['user_id']) {
             $tarea->delete();
         }
+        $_SESSION['success'] = "Tarea eliminada correctamente.";
         header('Location: ' . BASE_URL . 'proyecto');
     }
     public function editarTarea(int $proyecto_id, int $tarea_id): void
