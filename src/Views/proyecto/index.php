@@ -59,7 +59,7 @@
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-info">
                 <?= htmlspecialchars($_SESSION['success']) ?>
-                <?php unset($_SESSION['success']); ?>   
+                <?php unset($_SESSION['success']); ?>
             </div>
         <?php endif; ?>
         <div class="row g-4">
@@ -107,8 +107,8 @@
                             <!-- TAREAS -->
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h6 class="text-muted mb-0">Tareas</h6>
-                                <a href="<?= BASE_URL ?>proyecto/nuevatarea/<?= $proyecto->proyecto_id ?>"
-                                    class="btn btn-sm btn-outline-primary" title="Nueva tarea">
+                                <a href="#" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalTarea<?= $proyecto->proyecto_id ?>" title="Nueva tarea">
                                     <i class="fas fa-plus"></i>
                                 </a>
                             </div>
@@ -140,6 +140,62 @@
 
                         </div>
                     </div>
+
+                    <!-- MODAL NUEVA TAREA -->
+    <div class="modal fade" id="modalTarea<?= $proyecto->proyecto_id ?>" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form method="POST"
+                      action="<?= BASE_URL ?>proyecto/nuevatarea/<?= $proyecto->proyecto_id ?>">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Nueva tarea · <?= htmlspecialchars($proyecto->titulo) ?>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="form-label">Título</label>
+                            <input type="text" name="titulo" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea name="descripcion" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Usuario asignado</label>
+                            <select name="usuario_id" class="form-select" required>
+                                <?php foreach ($usuarios as $usuario): ?>
+                                    <option value="<?= $usuario->usuario_id ?>"
+                                        <?= $usuario->usuario_id == $_SESSION['user_id'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($usuario->nombre) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Crear tarea
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -155,6 +211,7 @@
         </div>
     </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

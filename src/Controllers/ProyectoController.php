@@ -14,7 +14,8 @@ class ProyectoController extends Controller
     {
         //Leer todos los proyectos del usuario autenticado
         $proyectos = Proyecto::where('usuario_id', $_SESSION['user_id'])->get();
-        $this->view('proyecto/index', ['proyectos' => $proyectos]);
+        $usuarios = Usuario::all();
+        $this->view('proyecto/index', ['proyectos' => $proyectos, 'usuarios' => $usuarios]);
     }
     public function nuevo(): void
     {
