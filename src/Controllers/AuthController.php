@@ -48,6 +48,7 @@ class AuthController extends Controller
         if ($usuario && password_verify($_POST['password'], $usuario->password)) {
             // Credenciales correctas
             $_SESSION['user_id'] = $usuario->usuario_id;
+            $_SESSION['user_name'] = $usuario->nombre;
             header('Location: ' . BASE_URL . 'proyecto');
             exit;
         } else {

@@ -41,6 +41,13 @@
                     <li class="nav-item">
                         <a href="<?= BASE_URL ?>tarea" class="nav-link">Tareas</a>
                     </li>
+                    <!--Mostrar nombre usuario logueado-->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <?= htmlspecialchars($_SESSION['user_name']) ?>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="<?= BASE_URL ?>auth/logout" class="nav-link">Salir</a>
                     </li>
@@ -100,9 +107,10 @@
                             </p>
 
                             <p class="small mb-2">
-                                📅 <?= htmlspecialchars($proyecto->fecha_inicio) ?>
+                                📅
+                                <?= (new DateTime($proyecto->fecha_inicio))->format('d-m-Y') ?>
                                 →
-                                <?= htmlspecialchars($proyecto->fecha_fin) ?>
+                                <?= (new DateTime($proyecto->fecha_fin))->format('d-m-Y') ?>
                             </p>
 
                             <hr>
@@ -154,10 +162,10 @@
                                             <?php if (!is_null($tarea->comentarios)): ?>
                                                 <p class="small text-muted mb-0">
                                                     <i class="fas fa-comments"></i>
-                                                    <?= nl2br(htmlspecialchars($tarea->comentarios)) ?>     
+                                                    <?= nl2br(htmlspecialchars($tarea->comentarios)) ?>
                                                 </p>
                                             <?php endif; ?>
-                                            
+
 
                                         </div>
                                     </div>

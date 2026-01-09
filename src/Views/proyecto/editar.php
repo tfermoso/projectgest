@@ -30,6 +30,13 @@
                     <li class="nav-item">
                         <a href="<?= BASE_URL ?>tarea" class="nav-link">Tareas</a>
                     </li>
+                       <!--Mostrar nombre usuario logueado-->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <?= htmlspecialchars($_SESSION['user_name']) ?>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="<?= BASE_URL ?>auth/logout" class="nav-link">Salir</a>
                     </li>
