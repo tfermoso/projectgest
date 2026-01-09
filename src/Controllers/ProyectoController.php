@@ -104,9 +104,13 @@ class ProyectoController extends Controller
             exit;
         }
     }
-    public function quitarTarea(int $proyecto_id, int $tarea_id): void
+    public function eliminarTarea(int $tarea_id): void
     {
-
+        $tarea = Tarea::find($tarea_id);
+        if ($tarea && $tarea->proyecto->usuario_id === $_SESSION['user_id']) {
+            $tarea->delete();
+        }
+        header('Location: ' . BASE_URL . 'proyecto');
     }
     public function editarTarea(int $proyecto_id, int $tarea_id): void
     {

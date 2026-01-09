@@ -131,7 +131,7 @@
                                                     $tarea->estado_id == 1 &&
                                                     is_null($tarea->comentarios)
                                                 ): ?>
-                                                    <a href="<?= BASE_URL ?>tarea/eliminar/<?= $tarea->tarea_id ?>" class="text-danger"
+                                                    <a href="<?= BASE_URL ?>proyecto/eliminartarea/<?= $tarea->tarea_id ?>" class="text-danger"
                                                         title="Eliminar tarea"
                                                         onclick="return confirm('¿Seguro que quieres eliminar esta tarea?')">
                                                         <i class="fas fa-trash"></i>
