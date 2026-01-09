@@ -45,7 +45,13 @@ class ProyectoController extends Controller
     }
     public function eliminar(int $id): void
     {
-
+        //eliminar proyecto por id
+        $proyecto = Proyecto::find($id);
+        if ($proyecto && $proyecto->usuario_id === $_SESSION['user_id']) {
+            $proyecto->delete();
+            $_SESSION['success'] = "Proyecto eliminado correctamente.";
+            header('Location: ' . BASE_URL . 'proyecto');
+        }   
     }
     public function vertareas(int $proyecto_id): void
     {
