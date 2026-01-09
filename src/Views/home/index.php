@@ -13,7 +13,7 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="/">ProjectGest</a>
+        <a class="navbar-brand fw-bold" href="<?=BASE_URL?>">ProjectGest</a>
 
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
