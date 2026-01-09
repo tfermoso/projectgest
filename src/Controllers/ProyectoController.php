@@ -42,7 +42,34 @@ class ProyectoController extends Controller
     }
     public function editar(int $id): void
     {
+        //procesar formulario de edición
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $titulo = $_POST['titulo'] ?? '';
+            $descripcion = $_POST['descripcion'] ?? '';
+            $fecha_inicio = $_POST['fecha_inicio'] ?? '';
+            $fecha_fin = $_POST['fecha_fin'] ?? '';
 
+            //Actualizar el proyecto
+            $proyecto = Proyecto::find($id);
+            if ($proyecto && $proyecto->usuario_id === $_SESSION['user_id']) {
+                $proyecto->titulo = $titulo;
+                $proyecto->descripcion = $descripcion;
+                $proyecto->fecha_inicio = $fecha_inicio;
+                $proyecto->fecha_fin = $fecha_fin;
+                $proyecto->save();
+
+                //Redirigir a la lista de proyectos
+                header('Location: ' . BASE_URL . 'proyecto');
+                exit;
+            }
+        }
+        //Editar proyecto por id
+        $proyecto = Proyecto::find($id);
+        if (!$proyecto || $proyecto->usuario_id !== $_SESSION['user_id']) {
+            header('Location: ' . BASE_URL . 'proyecto');
+            exit;
+        }
+        $this->view('proyecto/editar', ['proyecto' => $proyecto]);
     }
     public function eliminar(int $id): void
     {
@@ -54,13 +81,28 @@ class ProyectoController extends Controller
             header('Location: ' . BASE_URL . 'proyecto');
         }   
     }
-    public function vertareas(int $proyecto_id): void
-    {
 
-    }
-    public function asignartarea(int $proyecto_id, int $tarea_id): void
+    public function nuevatarea(int $proyecto_id): void
     {
+        //Agregar nueva tarea a un proyecto
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $titulo = $_POST['titulo'] ?? '';
+            $descripcion = $_POST['descripcion'] ?? '';
+            $usuario_id = $_POST['usuario_id'] ?? '';
 
+            // Crear la tarea
+            Tarea::create([
+                'titulo' => $titulo,
+                'descripcion' => $descripcion,
+                'proyecto_id' => $proyecto_id,
+                'usuario_id' => $usuario_id,
+                'estado_id' => 1
+            ]);
+
+            // Redirigir a la vista de tareas del proyecto
+            header('Location: ' . BASE_URL . 'proyecto');
+            exit;
+        }
     }
     public function quitarTarea(int $proyecto_id, int $tarea_id): void
     {
