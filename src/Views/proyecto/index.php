@@ -39,6 +39,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="<?= BASE_URL ?>tarea" class="nav-link">Tareas</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= BASE_URL ?>auth/logout" class="nav-link">Salir</a>
                     </li>
                 </ul>
@@ -131,8 +134,8 @@
                                                     $tarea->estado_id == 1 &&
                                                     is_null($tarea->comentarios)
                                                 ): ?>
-                                                    <a href="<?= BASE_URL ?>proyecto/eliminartarea/<?= $tarea->tarea_id ?>" class="text-danger"
-                                                        title="Eliminar tarea"
+                                                    <a href="<?= BASE_URL ?>proyecto/eliminartarea/<?= $tarea->tarea_id ?>"
+                                                        class="text-danger" title="Eliminar tarea"
                                                         onclick="return confirm('¿Seguro que quieres eliminar esta tarea?')">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
@@ -147,6 +150,14 @@
                                                 <i class="fas fa-user"></i>
                                                 <?= htmlspecialchars($tarea->usuario->nombre ?? 'Sin asignar') ?>
                                             </p>
+                                            <!-- Mostrar comentarios si existen -->
+                                            <?php if (!is_null($tarea->comentarios)): ?>
+                                                <p class="small text-muted mb-0">
+                                                    <i class="fas fa-comments"></i>
+                                                    <?= nl2br(htmlspecialchars($tarea->comentarios)) ?>     
+                                                </p>
+                                            <?php endif; ?>
+                                            
 
                                         </div>
                                     </div>

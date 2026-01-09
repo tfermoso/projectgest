@@ -113,10 +113,7 @@ class ProyectoController extends Controller
         $_SESSION['success'] = "Tarea eliminada correctamente.";
         header('Location: ' . BASE_URL . 'proyecto');
     }
-    public function editarTarea(int $proyecto_id, int $tarea_id): void
-    {
 
-    }
 
 
 }
