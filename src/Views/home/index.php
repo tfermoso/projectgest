@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <h5 class="card-title">📁 Proyectos</h5>
                         <p class="card-text">
-                            Crea y gestiona proyectos con fechas, descripción y responsables.
+                            Crea y gestiona proyectos con fechas, descripción.
                         </p>
                     </div>
                 </div>
